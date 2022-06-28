@@ -47,6 +47,46 @@ import UIKit
 
 
 /*
+
+ Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+
+ Example 1
+
+ Input: nums = [-4,-1,0,3,10]
+ Output: [0,1,9,16,100]
+ Explanation: After squaring, the array becomes [16,1,0,9,100].
+ After sorting, it becomes [0,1,9,16,100].
+
+ Example 2
+
+ Input: nums = [-7,-3,2,3,11]
+ Output: [4,9,9,49,121]
+
+ */
+
+let nums = [-4,-1,0,3,10]
+
+func sortedSquares(_ nums: [Int]) -> [Int] {
+
+    var tempArray = nums
+
+    for i in 0..<nums.count {
+
+        var currentIndex = i
+
+        tempArray[currentIndex] = tempArray[currentIndex] * tempArray[currentIndex]
+
+        while currentIndex > 0 && tempArray[currentIndex] < tempArray[currentIndex - 1] {
+            tempArray.swapAt(currentIndex - 1, currentIndex)
+            currentIndex -= 1
+        }
+    }
+    return tempArray
+}
+
+print(sortedSquares(nums))
+
+/*
  Given a fixed-length integer array arr, duplicate each occurrence of zero, shifting the remaining elements to the right.
 
  Note that elements beyond the length of the original array are not written. Do the above modifications to the input array in place and do not return anything.
@@ -99,35 +139,35 @@ var testArray = [2, 4, 6, 0, 3, 0]
  */
 
 
-var firstArray: [Int] = [1,4,6,0,0]
-let secondArray: [Int] = [2,3]
-let m = firstArray.filter {$0 != 0}.count
-let n = secondArray.filter { $0 != 0 }.count
-print("Input: \(firstArray), \(m), \(secondArray), \(n)")
-
-func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
-
-    var i = m - 1
-    var j = n - 1
-    var k = (m + n) - 1
-
-    while i >= 0, j >= 0 {
-        if nums1[i] >= nums2[j] {
-            nums1[k] = nums1[i]
-            i -= 1
-        } else {
-            nums1[k] = nums2[j]
-            j -= 1
-        }
-        k -= 1
-    }
-
-    while j >= 0 {
-        nums1[k] = nums2[j]
-        j -= 1
-        k -= 1
-    }
-}
-
-merge(&firstArray, m, secondArray, n)
-print(firstArray)
+//var firstArray: [Int] = [1,4,6,0,0]
+//let secondArray: [Int] = [2,3]
+//let m = firstArray.filter {$0 != 0}.count
+//let n = secondArray.filter { $0 != 0 }.count
+//print("Input: \(firstArray), \(m), \(secondArray), \(n)")
+//
+//func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
+//
+//    var i = m - 1
+//    var j = n - 1
+//    var k = (m + n) - 1
+//
+//    while i >= 0, j >= 0 {
+//        if nums1[i] >= nums2[j] {
+//            nums1[k] = nums1[i]
+//            i -= 1
+//        } else {
+//            nums1[k] = nums2[j]
+//            j -= 1
+//        }
+//        k -= 1
+//    }
+//
+//    while j >= 0 {
+//        nums1[k] = nums2[j]
+//        j -= 1
+//        k -= 1
+//    }
+//}
+//
+//merge(&firstArray, m, secondArray, n)
+//print(firstArray)
