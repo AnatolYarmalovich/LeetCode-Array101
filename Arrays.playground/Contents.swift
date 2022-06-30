@@ -64,27 +64,27 @@ import UIKit
 
  */
 
-let nums = [-4,-1,0,3,10]
-
-func sortedSquares(_ nums: [Int]) -> [Int] {
-
-    var tempArray = nums
-
-    for i in 0..<nums.count {
-
-        var currentIndex = i
-
-        tempArray[currentIndex] = tempArray[currentIndex] * tempArray[currentIndex]
-
-        while currentIndex > 0 && tempArray[currentIndex] < tempArray[currentIndex - 1] {
-            tempArray.swapAt(currentIndex - 1, currentIndex)
-            currentIndex -= 1
-        }
-    }
-    return tempArray
-}
-
-print(sortedSquares(nums))
+//let nums = [-4,-1,0,3,10]
+//
+//func sortedSquares(_ nums: [Int]) -> [Int] {
+//
+//    var tempArray = nums
+//
+//    for i in 0..<nums.count {
+//
+//        var currentIndex = i
+//
+//        tempArray[currentIndex] = tempArray[currentIndex] * tempArray[currentIndex]
+//
+//        while currentIndex > 0 && tempArray[currentIndex] < tempArray[currentIndex - 1] {
+//            tempArray.swapAt(currentIndex - 1, currentIndex)
+//            currentIndex -= 1
+//        }
+//    }
+//    return tempArray
+//}
+//
+//print(sortedSquares(nums))
 
 /*
  Given a fixed-length integer array arr, duplicate each occurrence of zero, shifting the remaining elements to the right.
@@ -98,7 +98,7 @@ print(sortedSquares(nums))
 
  */
 
-var testArray = [2, 4, 6, 0, 3, 0]
+//var testArray = [2, 4, 6, 0, 3, 0]
 
 //func duplicateZeros(_ arr: inout [Int]) {
 //
@@ -171,3 +171,62 @@ var testArray = [2, 4, 6, 0, 3, 0]
 //
 //merge(&firstArray, m, secondArray, n)
 //print(firstArray)
+
+
+/* Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
+
+Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
+
+Return k after placing the final result in the first k slots of nums.
+
+Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+ */
+
+/*
+ Example 1
+ Input: nums = [3,2,2,3], val = 3
+ Output: 2, nums = [2,2,_,_]
+ Explanation: Your function should return k = 2, with the first two elements of nums being 2.
+ It does not matter what you leave beyond the returned k (hence they are underscores).
+ */
+
+var testRemoveArray = [0,1,2,2,3,0,4,2]
+let val = 2
+
+func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+
+    var counter = 0
+
+    while counter < nums.count {
+        if nums[counter] == val {
+            nums.remove(at: counter)
+            counter = counter > 0  ? counter - 1 : 0
+        } else {
+            counter += 1
+        }
+    }
+    return nums.count
+}
+
+//result [0,1,3,0,4]
+
+func removeElementFor(_ nums: inout [Int], _ val: Int) -> Int {
+
+    var index = 0
+
+    for num in nums {
+        if num != val {
+            nums[index] = num
+            index += 1
+        } else {
+            nums.remove(at: index)
+        }
+    }
+
+    return nums.count
+}
+
+let removeElementResult = removeElementFor(&testRemoveArray, val)
+print(removeElementResult, testRemoveArray)
+
+
