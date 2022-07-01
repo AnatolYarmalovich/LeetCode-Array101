@@ -1,4 +1,5 @@
 import UIKit
+import Darwin
 
 /*
 
@@ -190,43 +191,86 @@ Do not allocate extra space for another array. You must do this by modifying the
  It does not matter what you leave beyond the returned k (hence they are underscores).
  */
 
-var testRemoveArray = [0,1,2,2,3,0,4,2]
-let val = 2
-
-func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
-
-    var counter = 0
-
-    while counter < nums.count {
-        if nums[counter] == val {
-            nums.remove(at: counter)
-            counter = counter > 0  ? counter - 1 : 0
-        } else {
-            counter += 1
-        }
-    }
-    return nums.count
-}
+//var testRemoveArray = [0,1,2,2,3,0,4,2]
+//let val = 2
+//
+//func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+//
+//    var counter = 0
+//
+//    while counter < nums.count {
+//        if nums[counter] == val {
+//            nums.remove(at: counter)
+//            counter = counter > 0  ? counter - 1 : 0
+//        } else {
+//            counter += 1
+//        }
+//    }
+//    return nums.count
+//}
 
 //result [0,1,3,0,4]
+//
+//func removeElementFor(_ nums: inout [Int], _ val: Int) -> Int {
+//
+//    var index = 0
+//
+//    for num in nums {
+//        if num != val {
+//            nums[index] = num
+//            index += 1
+//        } else {
+//            nums.remove(at: index)
+//        }
+//    }
+//
+//    return nums.count
+//}
+//
+//let removeElementResult = removeElementFor(&testRemoveArray, val)
+//print(removeElementResult, testRemoveArray)
 
-func removeElementFor(_ nums: inout [Int], _ val: Int) -> Int {
 
-    var index = 0
+/*
+ Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
 
-    for num in nums {
-        if num != val {
-            nums[index] = num
-            index += 1
-        } else {
-            nums.remove(at: index)
+ Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
+
+ Return k after placing the final result in the first k slots of nums.
+
+ Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+
+ Example 1
+
+ Input: nums = [0,0,1,1,1,2,2,3,3,4]
+ Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+ Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
+ It does not matter what you leave beyond the returned k (hence they are underscores).
+ */
+
+var removeDuplicatesTest = [0,0,1,1,1,2,2,3,3,4]
+
+class Solution {
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
+
+        var item: Int = nums[0]
+
+        var counter = 1
+
+        while counter < nums.count {
+            print(counter)
+            if nums[counter] == item {
+                print("If")
+                nums.remove(at: counter)
+            } else {
+                item = nums[counter]
+                counter += 1
+            }
         }
+        return nums.count
     }
-
-    return nums.count
 }
 
-let removeElementResult = removeElementFor(&testRemoveArray, val)
-print(removeElementResult, testRemoveArray)
-
-
+let solution = Solution()
+let resultOfSolution = solution.removeDuplicates(&removeDuplicatesTest)
+print(removeDuplicatesTest)
