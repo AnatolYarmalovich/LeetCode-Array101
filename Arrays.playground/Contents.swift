@@ -295,28 +295,121 @@ import Darwin
  */
 
 
-class Solution {
-    func checkIfExist(_ arr: [Int]) -> Bool {
+//class Solution {
+//    func checkIfExist(_ arr: [Int]) -> Bool {
+//
+//        var temp = Set<Int>()
+//
+//        for element in arr {
+//
+//            if temp.contains(element * 2) {
+//                return true
+//            }
+//
+//            if temp.contains(element / 2) && element % 2 == 0 {
+//                return true
+//            }
+//
+//            temp.insert(element)
+//
+//        }
+//        return false
+//    }
+//}
+//
+//let testArray = [3,1,7,11]
+//let solution = Solution()
+//let resultOfSolution = solution.checkIfExist(testArray)
 
-        var temp = Set<Int>()
 
-        for element in arr {
+/*
 
-            if temp.contains(element * 2) {
-                return true
-            }
+Given an array of integers arr, return true if and only if it is a valid mountain array.
 
-            if temp.contains(element / 2) && element % 2 == 0 {
-                return true
-            }
+Example 1:
 
-            temp.insert(element)
+Input: arr = [2,1]
+Output: false
 
-        }
-        return false
-    }
-}
+Example 2:
+Input: arr = [3,5,5]
+Output: false
 
-let testArray = [3,1,7,11]
-let solution = Solution()
-let resultOfSolution = solution.checkIfExist(testArray)
+Example 3:
+
+Input: arr = [0,3,2,1]
+Output: true
+
+ */
+
+// My own solution
+
+//class Solution {
+//    func validMountainArray(_ arr: [Int]) -> Bool {
+//
+//        var tempVault = [Int: Int]()
+//
+//        var directionUp: Bool = true
+//
+//        var result = false
+//
+//        if arr.count < 3 {
+//            return result
+//        }
+//
+//        for index in 0..<arr.count {
+//            //Move up
+//
+//            if arr[index] == tempVault[index - 1] {
+//                return result
+//            }
+//
+//            if arr[index] > tempVault[index - 1] ?? 0 && directionUp == true  {
+//                tempVault.updateValue(arr[index], forKey: index)
+//            }
+//
+//            //Heigthest place
+//            if arr[index] < tempVault[index - 1] ?? 0 && directionUp == true {
+//                if index < 2 {
+//                    return result
+//                }
+//                directionUp = false
+//                tempVault.updateValue(arr[index], forKey: index)
+//            }
+//
+//            //Move down
+//            if arr[index] < tempVault[index - 1] ?? 0 && directionUp == false {
+//                if index == arr.count - 1 {
+//                    result = true
+//                }
+//                tempVault.updateValue(arr[index], forKey: index)
+//            }
+//        }
+//
+//        return result
+//    }
+//}
+
+// Solution fron discussion
+
+//class Solution {
+//    func validMountainArray(_ arr: [Int]) -> Bool {
+//        let n = arr.count
+//        var i = 0
+//        var j = n-1
+//        while i + 1 < n , arr[i] < arr[i+1] {
+//            i+=1
+//        }
+//        while j > 0 , arr[j] < arr[j-1] {
+//            j-=1
+//        }
+//
+//        return i == j && i > 0 && i < n - 1
+//
+//    }
+//}
+//
+//let testArray = [3,5,5]
+//let solution = Solution()
+//let resultOfSolution = solution.validMountainArray(testArray)
+//print(resultOfSolution)
