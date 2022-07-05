@@ -248,29 +248,75 @@ import Darwin
  It does not matter what you leave beyond the returned k (hence they are underscores).
  */
 
-var removeDuplicatesTest = [0,0,1,1,1,2,2,3,3,4]
+//var removeDuplicatesTest = [0,0,1,1,1,2,2,3,3,4]
+//
+//class Solution {
+//    func removeDuplicates(_ nums: inout [Int]) -> Int {
+//
+//        var item: Int = nums[0]
+//
+//        var counter = 1
+//
+//        while counter < nums.count {
+//            print(counter)
+//            if nums[counter] == item {
+//                print("If")
+//                nums.remove(at: counter)
+//            } else {
+//                item = nums[counter]
+//                counter += 1
+//            }
+//        }
+//        return nums.count
+//    }
+//}
+//
+//let solution = Solution()
+//let resultOfSolution = solution.removeDuplicates(&removeDuplicatesTest)
+//print(removeDuplicatesTest)
+
+
+/*
+
+ Given an array arr of integers, check if there exists two integers N and M such that N is the double of M ( i.e. N = 2 * M).
+
+ Input: arr = [10,2,5,3]
+ Output: true
+ Explanation: N = 10 is the double of M = 5,that is, 10 = 2 * 5.
+
+ Input: arr = [7,1,14,11]
+ Output: true
+ Explanation: N = 14 is the double of M = 7,that is, 14 = 2 * 7.
+
+ Input: arr = [3,1,7,11]
+ Output: false
+ Explanation: In this case does not exist N and M, such that N = 2 * M.
+
+ */
+
 
 class Solution {
-    func removeDuplicates(_ nums: inout [Int]) -> Int {
+    func checkIfExist(_ arr: [Int]) -> Bool {
 
-        var item: Int = nums[0]
+        var temp = Set<Int>()
 
-        var counter = 1
+        for element in arr {
 
-        while counter < nums.count {
-            print(counter)
-            if nums[counter] == item {
-                print("If")
-                nums.remove(at: counter)
-            } else {
-                item = nums[counter]
-                counter += 1
+            if temp.contains(element * 2) {
+                return true
             }
+
+            if temp.contains(element / 2) && element % 2 == 0 {
+                return true
+            }
+
+            temp.insert(element)
+
         }
-        return nums.count
+        return false
     }
 }
 
+let testArray = [3,1,7,11]
 let solution = Solution()
-let resultOfSolution = solution.removeDuplicates(&removeDuplicatesTest)
-print(removeDuplicatesTest)
+let resultOfSolution = solution.checkIfExist(testArray)
