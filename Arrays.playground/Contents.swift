@@ -487,3 +487,49 @@ Output: true
 //    return nums
 //}
 
+/*
+ Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+ Note that you must do this in-place without making a copy of the array.
+
+ Example 1:
+
+ Input: nums = [0,1,0,3,12]
+ Output: [1,3,12,0,0]
+
+ Example 2:
+
+ Input: nums = [0]
+ Output: [0]
+ */
+
+//class Solution {
+//    func moveZeroes(_ nums: inout [Int]) {
+//        var notZeroItem: Int = 0
+//
+//        for i in 0..<nums.count {
+//            if nums[i] != 0 {
+//                nums.swapAt(i, notZeroItem)
+//                notZeroItem += 1
+//            }
+//        }
+//    }
+//}
+//
+//var nums = [0,1,0,3,12]
+//let solution = Solution()
+//solution.moveZeroes(&nums)
+//print("Result: \(nums)")
+
+
+/*
+Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
+
+Return any array that satisfies this condition.
+*/
+
+class Solution {
+    func sortArrayByParity(_ nums: [Int]) -> [Int] {
+
+    }
+}
