@@ -324,21 +324,21 @@ import Darwin
 
 /*
 
-Given an array of integers arr, return true if and only if it is a valid mountain array.
+ Given an array of integers arr, return true if and only if it is a valid mountain array.
 
-Example 1:
+ Example 1:
 
-Input: arr = [2,1]
-Output: false
+ Input: arr = [2,1]
+ Output: false
 
-Example 2:
-Input: arr = [3,5,5]
-Output: false
+ Example 2:
+ Input: arr = [3,5,5]
+ Output: false
 
-Example 3:
+ Example 3:
 
-Input: arr = [0,3,2,1]
-Output: true
+ Input: arr = [0,3,2,1]
+ Output: true
 
  */
 
@@ -523,9 +523,9 @@ Output: true
 
 
 /*
-Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
+ Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
 
-Return any array that satisfies this condition.
+ Return any array that satisfies this condition.
 
  Example 1:
 
@@ -536,24 +536,170 @@ Return any array that satisfies this condition.
 
  Input: nums = [0]
  Output: [0]
-*/
+ */
 
-class Solution {
-    func sortArrayByParity(_ nums: [Int]) -> [Int] {
-        var result = nums
+//class Solution {
+//    func sortArrayByParity(_ nums: [Int]) -> [Int] {
+//        var result = nums
+//
+//        var evenIndex = 0
+//
+//        for i in 0..<nums.count {
+//            if nums[i] % 2 == 0 {
+//                result.swapAt(i, evenIndex)
+//                evenIndex += 1
+//            }
+//        }
+//        return result
+//    }
+//}
+//
+//var nums = [1,0,3]
+//let result = Solution().sortArrayByParity(nums)
+//print("Result: \(result)")
 
-        var evenIndex = 0
+/*
+ Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
 
-        for i in 0..<nums.count {
-            if nums[i] % 2 == 0 {
-                result.swapAt(i, evenIndex)
-                evenIndex += 1
-            }
-        }
-        return result
-    }
-}
+ Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
 
-var nums = [1,0,3]
-let result = Solution().sortArrayByParity(nums)
-print("Result: \(result)")
+ Return k after placing the final result in the first k slots of nums.
+
+ Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+
+ Example 1:
+
+ Input: nums = [3,2,2,3], val = 3
+ Output: 2, nums = [2,2,_,_]
+ Explanation: Your function should return k = 2, with the first two elements of nums being 2.
+ It does not matter what you leave beyond the returned k (hence they are underscores).
+ Example 2:
+
+ Input: nums = [0,1,2,2,3,0,4,2], val = 2
+ Output: 5, nums = [0,1,4,0,3,_,_,_]
+ Explanation: Your function should return k = 5, with the first five elements of nums containing 0, 0, 1, 3, and 4.
+ Note that the five elements can be returned in any order.
+ It does not matter what you leave beyond the returned k (hence they are underscores).
+ */
+
+
+//class Solution {
+//    //o()
+//    //O(1)
+//    func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+//
+//        var index: Int = 0
+//
+//        while index < nums.count {
+//            if nums[index] == val {
+//                nums.remove(at: index)
+//            } else {
+//                index += 1
+//            }
+//        }
+//
+//        return nums.count
+//    }
+//}
+//
+//var nums = [0,1,2,2,3,0,4,2]
+//let result = Solution().removeElement(&nums, 2)
+//print(result, nums)
+
+/*
+ A school is trying to take an annual photo of all the students. The students are asked to stand in a single file line in non-decreasing order by height. Let this ordering be represented by the integer array expected where expected[i] is the expected height of the ith student in line.
+
+ You are given an integer array heights representing the current order that the students are standing in. Each heights[i] is the height of the ith student in line (0-indexed).
+
+ Return the number of indices where heights[i] != expected[i].
+
+ Example 1:
+
+ Input: heights = [1,1,4,2,1,3]
+ Output: 3
+ Explanation:
+ heights:  [1,1,4,2,1,3]
+ expected: [1,1,1,2,3,4]
+ Indices 2, 4, and 5 do not match.
+ Example 2:
+
+ Input: heights = [5,1,2,3,4]
+ Output: 5
+ Explanation:
+ heights:  [5,1,2,3,4]
+ expected: [1,2,3,4,5]
+ All indices do not match.
+ Example 3:
+
+ Input: heights = [1,2,3,4,5]
+ Output: 0
+ Explanation:
+ heights:  [1,2,3,4,5]
+ expected: [1,2,3,4,5]
+ All indices match.
+ */
+
+//class Solution {
+//
+//    func heightChecker(_ heights: [Int]) -> Int {
+//        var counter = 0
+//
+//        var sortedHeights = mergeSort(heights)
+//
+//        for i in 0..<heights.count {
+//            if sortedHeights[i] != heights[i] {
+//                counter += 1
+//            }
+//        }
+//
+//        return counter
+//    }
+//
+//    private func mergeSort(_ heights: [Int]) -> [Int] {
+//        guard heights.count > 1 else {
+//            return heights
+//        }
+//
+//        let middleIndex = heights.count / 2
+//        let leftArray = mergeSort(Array(heights[..<middleIndex]))
+//        let rightArray = mergeSort(Array(heights[middleIndex...]))
+//
+//        return merge(leftArray, rightArray)
+//    }
+//
+//    private func merge(_ left: [Int], _ right: [Int]) -> [Int] {
+//        var leftIndex = 0
+//        var rightIndex = 0
+//
+//        var result: [Int] = []
+//
+//        while leftIndex < left.count && rightIndex < right.count {
+//            let leftElement = left[leftIndex]
+//            let rightElement = right[rightIndex]
+//
+//            if leftElement < rightElement {
+//                result.append(leftElement)
+//                leftIndex += 1
+//            } else if leftElement > rightElement {
+//                result.append(rightElement)
+//                rightIndex += 1
+//            } else {
+//                result.append(leftElement)
+//                leftIndex += 1
+//                result.append(rightElement)
+//                rightIndex += 1
+//            }
+//        }
+//
+//        if leftIndex < left.count {
+//            result.append(contentsOf: left[leftIndex...])
+//        }
+//        if rightIndex < right.count {
+//            result.append(contentsOf: right[rightIndex...])
+//        }
+//        return result
+//    }
+//}
+//
+//let result = Solution().heightChecker([5,1,2,3,4])
+//print(result)
